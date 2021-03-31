@@ -9,7 +9,7 @@ async function validate(ctx, schema) {
     await schema.validateAsync(params);
   } catch (e) {
     if (e instanceof ValidationError) {
-      throw new ParamsException(e.message);
+      throw ParamsException(e.message);
     }
     throw e;
   }
