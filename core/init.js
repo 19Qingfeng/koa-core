@@ -9,10 +9,10 @@ class InitManager {
     InitManager.initRouter();
   }
   static initGlobalVar() {
-    global.HttpException = HttpException;
-    global.ParamsException = ParamsException;
+    global.HttpException = HttpException; // 公用错误类
+    global.ParamsException = ParamsException; // 参数错误类
     global.validateError = (msg) => {
-      return new ParamsException(msg);
+      return new ParamsException(msg); // 创建错误类
     };
   }
 

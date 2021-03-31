@@ -38,6 +38,7 @@ async function useExceptionModel(ctx, next) {
       };
       ctx.status = e.status;
     } else {
+      console.log(e, '发生错误');
       ctx.body = {
         code: e.code || 500,
         msg: e.msg || '服务器错误',
