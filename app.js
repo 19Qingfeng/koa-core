@@ -3,6 +3,7 @@ const bodyparser = require('koa-bodyparser');
 const json = require('koa-json');
 const InitManager = require('./core/init');
 const { useSuccessModel, useExceptionModel } = require('./middleware/model');
+const useToken = require('./middleware/token');
 const app = new Koa();
 
 app.use(useSuccessModel);
@@ -14,6 +15,8 @@ app.use(
   })
 );
 app.use(json());
+
+app.use(useToken);
 
 InitManager.initCore(app);
 

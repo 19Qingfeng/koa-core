@@ -4,6 +4,19 @@ function isPlainObject(obj) {
   return Object.prototype.toString.call(obj) === '[object Object]';
 }
 
+function parseHeader(headers, normazilerName) {
+  if (!headers) return;
+  Object.keys(headers).forEach((header) => {
+    if (
+      header !== normazilerName &&
+      header.toLocaleLowerCase() === normazilerName.toLocaleLowerCase()
+    ) {
+      headers[normazilerName] = headers[header];
+      delete headers[header];
+    }
+  });
+}
+
 /**
  *  列表返回内容key值转为驼峰
  *
@@ -34,4 +47,5 @@ function camelCase(obj) {
 
 module.exports = {
   camelCase,
+  parseHeader,
 };

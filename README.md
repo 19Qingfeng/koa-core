@@ -9,7 +9,7 @@ CREATE TABLE `sys_user` (
   `username` varchar(64) DEFAULT NULL,
   `password` varchar(128) DEFAULT NULL,
   `salt` varchar(255) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
+  `status` int(1) DEFAULT NULL, -- 0停用 1使用
   `role` int(1) -- 0 普通用户 1 管理员
   `remark` varchar(255) DEFAULT NULL,
   `create_ts` bigint(15) NOT NULL COMMENT '创建时间',

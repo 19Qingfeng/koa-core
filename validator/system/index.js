@@ -1,4 +1,4 @@
-async function handleSystemList(ctx, next) {
+async function validateList(ctx, next) {
   const schema = Joi.object({
     size: Joi.string().required(),
     page: Joi.number().required(),
@@ -12,5 +12,5 @@ async function handleSystemList(ctx, next) {
 }
 
 module.exports = {
-  handleSystemList,
+  validateList,
 };
