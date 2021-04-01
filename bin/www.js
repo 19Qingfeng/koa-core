@@ -6,6 +6,11 @@
 require('dotenv').config();
 
 /**
+ * use module-alias
+ */
+require('module-alias/register');
+
+/**
  * Module dependencies.
  */
 

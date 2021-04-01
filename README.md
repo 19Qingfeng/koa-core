@@ -10,6 +10,7 @@ CREATE TABLE `sys_user` (
   `password` varchar(128) DEFAULT NULL,
   `salt` varchar(255) DEFAULT NULL,
   `status` int(1) DEFAULT NULL,
+  `role` int(1) -- 0 普通用户 1 管理员
   `remark` varchar(255) DEFAULT NULL,
   `create_ts` bigint(15) NOT NULL COMMENT '创建时间',
   `update_ts` bigint(15) NOT NULL COMMENT '更新时间',

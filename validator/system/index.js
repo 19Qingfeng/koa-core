@@ -1,7 +1,4 @@
-const validate = require('./index');
-const Joi = require('joi');
-
-const validateList = async (ctx, next) => {
+async function handleSystemList(ctx, next) {
   const schema = Joi.object({
     size: Joi.string().required(),
     page: Joi.number().required(),
@@ -10,10 +7,10 @@ const validateList = async (ctx, next) => {
       .regex(/['ascending'|'descending']/)
       .required(),
   });
-  await validate(ctx, schema);
+  await validateRequest(ctx, schema);
   await next();
-};
+}
 
 module.exports = {
-  validateList,
+  handleSystemList,
 };

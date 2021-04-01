@@ -1,6 +1,8 @@
 const Router = require('koa-router');
 const requireDirectory = require('require-directory');
 const { HttpException, ParamsException } = require('../model/http-exception');
+const Joi = require('joi');
+const validate = require('@validator/index');
 
 class InitManager {
   static initCore(app) {
@@ -16,6 +18,11 @@ class InitManager {
     // 参数错误工厂
     global.ParamsException = (msg) => {
       return new ParamsException(msg);
+    };
+    // Joi校验请求参数
+    global.Joi = Joi;
+    global.validateRequest = (ctx, schema) => {
+      return validate(ctx, schema);
     };
   }
 

@@ -1,6 +1,3 @@
-const Joi = require('joi');
-const validate = require('../index');
-
 const validateList = async (ctx, next) => {
   const schema = Joi.object({
     size: Joi.string().required(),
@@ -11,7 +8,7 @@ const validateList = async (ctx, next) => {
       .required(),
     parentTag: Joi.number().allow(''),
   });
-  await validate(ctx, schema);
+  await validateRequest(ctx, schema);
   await next();
 };
 

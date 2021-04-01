@@ -1,6 +1,6 @@
 const Router = require('koa-router');
-const { handlePersonalList } = require('../../controllers/personal.js');
-const { validateList } = require('../../validator/personal');
+const { handlePersonalList } = require('@controllers/personal/index');
+const { validateList } = require('@validator/personal/index');
 
 const router = new Router();
 

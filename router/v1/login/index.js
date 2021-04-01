@@ -1,6 +1,6 @@
 const Router = require('koa-router');
-const { validateLogin } = require('../../validator/user');
-const { handleLogin } = require('../../controllers/user');
+const { validateLogin } = require('@validator/login/index');
+const { handleLogin } = require('@controllers/login/index');
 const router = new Router();
 
 router.prefix('/v1/user');
