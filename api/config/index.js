@@ -6,6 +6,10 @@ const service = axios.create({
 });
 
 const statusMethod = {
+  400(error) {
+    const responseMsg = error.response.data.msg;
+    throw ParamsException(responseMsg);
+  },
   401() {
     throw TokenError('登陆信息过期，请重新登陆。');
   },
@@ -23,7 +27,8 @@ const statusMethod = {
 service.interceptors.request.use(
   (config) => {
     if (global.token) {
-      config.headers['Authorization'] = 'Bearer ' + global.token;
+      // 'Bearer ' +
+      config.headers['Authorization'] = global.token;
     }
     return config;
   },
@@ -35,9 +40,15 @@ service.interceptors.request.use(
 // response interceptor
 service.interceptors.response.use(
   (response) => {
-    return response;
+    console.log(response.status, 'status');
+    console.log(response.data);
+    return response.data;
   },
   (error) => {
+    console.log(error.response.data, 'error response');
+    if (error.config.error) {
+      throw error.config.error;
+    }
     const status = (error.response && error.response.status) || 500;
     statusMethod[status](error);
   }

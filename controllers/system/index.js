@@ -1,20 +1,48 @@
+const {
+  getUserList,
+  createUser,
+  getUserDetail,
+  editUser,
+} = require('@api/system');
+
 async function handleSystemList(ctx, next) {
-  const column = [];
-  for (let i of Array.from({ length: 80 })) {
-    column.push({
-      id: parseInt(Math.random() * 100),
-      username: 'wang' + Math.random(),
-      role: Math.random() > 0.5 ? 0 : 1,
-      update_ts: Date.now(),
-      status: Math.random() > 0.5 ? 0 : 1,
-    });
-  }
+  const query = ctx.request.query;
+  const page_size = query.size;
+  const page_index = query.page;
+  const params = {
+    page_size,
+    page_index,
+  };
+  const {
+    data: { list, count },
+  } = await getUserList(params);
   ctx.state.success({
-    data: column,
-    total: 80,
+    list,
+    total: count,
   });
+}
+
+async function handleSystemCreate(ctx, next) {
+  const data = ctx.request.body;
+  await createUser(data);
+  ctx.state.success();
+}
+
+async function handleSystemDetail(ctx, next) {
+  const id = ctx.request.query.id;
+  const { data } = await getUserDetail(id);
+  ctx.state.success(data);
+}
+
+async function handleSystemEdit(ctx, next) {
+  const data = ctx.request.body;
+  await editUser(data);
+  ctx.state.success();
 }
 
 module.exports = {
   handleSystemList,
+  handleSystemCreate,
+  handleSystemDetail,
+  handleSystemEdit,
 };

@@ -52,7 +52,8 @@ CREATE TABLE `categories` (
 CREATE TABLE `tags` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tag_name` varchar(50) DEFAULT '' COMMENT '标签名称',
-  `type` tinyint(1) comment '1 media, 2 category',
+  `pid` int(11) '父节点Pid是 0 '
+  `type` tinyint(1) comment '1 media, 2 category', '不可见标签是没有父级节点'
   `create_ts` bigint(15) NOT NULL COMMENT '创建时间',
   `update_ts` bigint(15) NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
@@ -97,6 +98,7 @@ CREATE TABLE `user_tags` (
   `user_id` int(11) NOT NULL COMMENT '用户ID',
   `tag_id` int(11) NOT NULL COMMENT '标签 ID',
   `create_ts` bigint(15) NOT NULL COMMENT '创建时间',
+  `status` `1 显示 2隐藏`
   `update_ts` bigint(15) NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

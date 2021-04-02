@@ -14,6 +14,7 @@ async function useToken(ctx, next) {
     throw TokenError();
   }
   global.token = token;
+  await next();
 }
 
 module.exports = useToken;
