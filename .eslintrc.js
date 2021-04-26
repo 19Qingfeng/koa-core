@@ -11,7 +11,9 @@ module.exports = {
   globals: {
     ParamsException: true,
     HttpException: true,
-    validateError: true
+    validateError: true,
   },
-  rules: {},
+  rules: {
+    'no-console': ['warn'],
+  },
 };
